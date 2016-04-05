@@ -32,10 +32,11 @@ Will it be interactive? Can you show it working? This project involves a live de
 How will you know if you are successful? 
 If you include some kind of _quantitative analysis,_ that would be good.
 
-## Architecture Diagram- David
-Upload the architecture diagram you made for your slide presentation to your repository, and include it in-line here.
+## Architecture Diagram
 
-Create several paragraphs of narrative to explain the pieces and how they interoperate.
+![alt tag](https://github.com/oplS16projects/Sports-Stats-David-and-Connor/blob/master/architecture_diagram.png)
+
+First Connor will extract all of the information from the website containing the giant spreadsheet of numbers in certain categories. While this may sound simple, it has actually been rather difficult and will take some extra effort. Then he will reorganize it into specific ways for David to make his statistical analysis on. Once all of the data has been reorganized, David will proceed to do all of the mathematical calculations that will be used to predict future outcomes and results. In addition, he will make comparisons between the teams and how they are all performing relative to each other. Finally, Connor and David will both be making changes to the code along the way simultaneously to debug any errors.
 
 ## Schedule-Both
 Explain how you will go from proposal to finished product. 
