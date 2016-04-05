@@ -1,7 +1,7 @@
 # Project Title: title here (10 words maximum)
 
 ### Statement -Connor
-Describe your project. Why is it interesting? Why is it interesting to you personally? What do you hope to learn? 
+Our project will take any two teams in the NHL and try to predict who will win when they play together. The project will pull stats from website www.hockeyanalysis.com and organize them into objects for each of the 30 teams in the league. We will then compare these stats to generate a number representing the probability of victory for each team. It will also give a breakdown about how we arrived at these numbers.
 
 ### Analysis -David 
 Explain what approaches from class you will bring to bear on the project. Be explicit: e.g., will you use recursion? How? Will you use map/filter/reduce? How? Will you use data abstraction? Will you use object-orientation? Will you use functional approaches to processing your data? Will you use state-modification approaches? A combination?
@@ -9,13 +9,8 @@ Explain what approaches from class you will bring to bear on the project. Be exp
 The idea here is to identify what ideas from the class you will use in carrying out your project. 
 
 ### Data set or other source materials -Connor
-If you will be working with existing data, where will you get those data from? (Dowload it from a website? access it in a database? create it in a simulation you will build....)
-
-How will you convert that data into a form usable for your project?  
-
-Do your homework here: if you are pulling data from somewhere, actually go download it and look at it. Explain in some detail what your plan is for accomplishing the necessary processing.
-
-If you are using some other starting materails, explain what they are. Basically: anything you plan to use that isn't code.
+The data will be pulled from http://stats.hockeyanalysis.com/teamstats.php?disp=1&db=201516&sit=5v5&sort=PDO&sortdir=DESC.
+It will be pulled using the net library.
 
 ### Deliverable and Demonstration-Both
 Explain exactly what you'll have at the end. What will it be able to do at the live demo?
@@ -71,6 +66,3 @@ will write the....
 
 ### Connor McLaughlin @CJMcLaughlin
 will work on...
-
-### Frank Functions @frankiefunk 
-Frank is team lead. Additionally, Frank will work on...   
