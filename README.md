@@ -1,16 +1,23 @@
-# Project Title: title here (10 words maximum)
+# Project Title: Sports stats
 
 ### Statement -Connor
-Our project will take any two teams in the NHL and try to predict who will win when they play together. The project will pull stats from website www.hockeyanalysis.com and organize them into objects for each of the 30 teams in the league. We will then compare these stats to generate a number representing the probability of victory for each team. It will also give a breakdown about how we arrived at these numbers.
+Describe your project. Why is it interesting? Why is it interesting to you personally? What do you hope to learn? 
 
-### Analysis -David 
-Explain what approaches from class you will bring to bear on the project. Be explicit: e.g., will you use recursion? How? Will you use map/filter/reduce? How? Will you use data abstraction? Will you use object-orientation? Will you use functional approaches to processing your data? Will you use state-modification approaches? A combination?
+### Analysis
+Some of the ideas from class that we plan on implementing into our project include recursion and Higher Order procedures such as map/filter/reduce.
 
-The idea here is to identify what ideas from the class you will use in carrying out your project. 
+We plan on using recursion by recovering the information from a gigantic statistics table and reorganizing them. There is a website with data on certain sports team that we plan on using for the data analysis. Since extracting all of the information at once is somewhat complex, we plan on using recursion to extract small bits at a time until the whole table has been obtained. Later on, we will also be using recursion with implementing the predictions part since those require some sort of statistical analysis.
+
+Higher Order procedures will be used in our project in only the predictions and analysis part. Certain pieces of information such as outlier data can be removed from the list by using filter. As another example, the map function can be used to perform a certain statistical equation on certain categories of information such as winning and losing streaks.
 
 ### Data set or other source materials -Connor
-The data will be pulled from http://stats.hockeyanalysis.com/teamstats.php?disp=1&db=201516&sit=5v5&sort=PDO&sortdir=DESC.
-It will be pulled using the net library.
+If you will be working with existing data, where will you get those data from? (Dowload it from a website? access it in a database? create it in a simulation you will build....)
+
+How will you convert that data into a form usable for your project?  
+
+Do your homework here: if you are pulling data from somewhere, actually go download it and look at it. Explain in some detail what your plan is for accomplishing the necessary processing.
+
+If you are using some other starting materails, explain what they are. Basically: anything you plan to use that isn't code.
 
 ### Deliverable and Demonstration-Both
 Explain exactly what you'll have at the end. What will it be able to do at the live demo?
@@ -47,22 +54,13 @@ What exactly will be turned in on this day?
 ### Second Milestone (Fri Apr 22)-Connor
 What exactly will be turned in on this day? 
 
-### Final Presentation (last week of semester)-David
-What additionally will be done in the last chunk of time?
+### Final Presentation (last week of semester)
+During our last week in the semester, we will be going through and knocking out all of the smallest bugs within our code that may exist. By then, we should have already dealt with all of the really major defects within our code. All that should be left is to remove discrepancies with edge cases and outliers. Also, we will try to come up with final questions that should be responded to when doing our project presentations in the hallway.
 
 ## Group Responsibilities
-Here each group member gets a section where they, as an individual, detail what they are responsible for in this project. Each group member writes their own Responsibility section. Include the milestones and final deliverable.
-
-**Additional instructions for teams of three:** 
-* Remember that you must have prior written permission to work in groups of three (specifically, an approved `FP3` team declaration submission).
-* The team must nominate a lead. This person is primarily responsible for code integration. This work may be shared, but the team lead has default responsibility.
-* The team lead has full partner implementation responsibilities also.
-* Identify who is team lead.
-
-In the headings below, replace the silly names and GitHub handles with your actual ones.
 
 ### David Bui @buidavid16
-will write the....
+will write the code during the statistical analysis and predictions part of the project. He will figure out the formulas and provide mathematical analysis on how the extracted information can be used in certain ways. In addition, David will also assist Connor with figuring out any problems with the code on how to extract all of the numbers from the data table for various teams.
 
 ### Connor McLaughlin @CJMcLaughlin
 will work on...
