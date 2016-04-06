@@ -1,6 +1,6 @@
 # Project Title: Sports stats
 
-### Statement -Connor
+### Statement 
 Our project will take any two teams in the NHL and try to predict who will win when they play together. The project will pull stats from website www.hockeyanalysis.com and organize them into objects for each of the 30 teams in the league. We will then compare these stats to generate a number representing the probability of victory for each team. It will also give a breakdown about how we arrived at these numbers.
 
 ### Analysis
@@ -10,18 +10,18 @@ We plan on using recursion by recovering the information from a gigantic statist
 
 Higher Order procedures will be used in our project in only the predictions and analysis part. Certain pieces of information such as outlier data can be removed from the list by using filter. As another example, the map function can be used to perform a certain statistical equation on certain categories of information such as winning and losing streaks.
 
-### Data set or other source materials -Connor
+### Data set or other source materials 
 The data will be pulled from http://stats.hockeyanalysis.com/teamstats.php?disp=1&db=201516&sit=5v5&sort=PDO&sortdir=DESC. It will be pulled using the net library.
 
 
-### Deliverable and Demonstration-Both
+### Deliverable and Demonstration
 
 At the end of the project people should be able to pick any two teams and have them be compared. The program will run on data from http://stats.hockeyanalysis.com/ but the regexes could be modified to pull from multiple sources.
 
 The live demo can be interactive, allowing users to selet any team.
 
 
-### Evaluation of Results-Connor
+### Evaluation of Results
 We will know that the program is working if the a very good team will have a high chance of victory against and a bad team or if the probability of victory matches up with the standings.
 
 ## Architecture Diagram
@@ -30,7 +30,7 @@ We will know that the program is working if the a very good team will have a hig
 
 First Connor will extract all of the information from the website containing the giant spreadsheet of numbers in certain categories. While this may sound simple, it has actually been rather difficult and will take some extra effort. Then he will reorganize it into specific ways for David to make his statistical analysis on. Once all of the data has been reorganized, David will proceed to do all of the mathematical calculations that will be used to predict future outcomes and results. In addition, he will make comparisons between the teams and how they are all performing relative to each other. Finally, Connor and David will both be making changes to the code along the way simultaneously to debug any errors.
 
-## Schedule-Both
+## Schedule
 
 
 Sunday April 10: Establish most important statistics to pull from website, weight, ect. First draft of forumla
@@ -52,10 +52,10 @@ You will be expected to turn in code, documentation, and data (as appropriate) a
 
 Write concrete steps for your schedule to move from concept to working system. 
 
-### First Milestone (Fri Apr 15)-Connor
+### First Milestone (Fri Apr 15)
 For the first milestone we should have pulled the data from the website and organize it into team data structures.
 
-### Second Milestone (Fri Apr 22)-Connor
+### Second Milestone (Fri Apr 22)
 For the second milestone we should have pulled from the numbers from the objects and applied them to a formula. We start to create a GUI for the program. 
 
 
