@@ -55,6 +55,8 @@ Write concrete steps for your schedule to move from concept to working system.
 ### First Milestone (Fri Apr 15)
 For the first milestone we should have pulled the data from the website and organize it into team data structures.
 
+Milestone 1 Update: We have pulled data from the site and organized it according to schedule. David worked out a formula that will be implemented in the final project.
+
 ### Second Milestone (Fri Apr 22)
 For the second milestone we should have pulled from the numbers from the objects and applied them to a formula. We start to create a GUI for the program. 
 
