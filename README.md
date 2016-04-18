@@ -34,23 +34,18 @@ First Connor will extract all of the information from the website containing the
 
 
 Sunday April 10: Establish most important statistics to pull from website, weight, ect. First draft of forumla
+
 Wednesday April 13: Have code to pull stats from website.
+
 Friday April 15: Have those stats organized into a data structure
+
 Monday April 18: Apply those stats to the forumla. The formula may need revising at this point
-Wednesday April 20: Have all files need to pull from for GUI (team logos ect.)
+
+Wednesday April 20: Have all files need to pull from for GUI (team logos etc.)
+
 Friday April 22: Finalize Forumla, start to put GUI together.
-Sunday April 24: Finalize GUI 
 
-
-Explain how you will go from proposal to finished product. 
-
-There are three deliverable milestones to explicitly define, below.
-
-The nature of deliverables depend on your project, but may include things like processed data ready for import, core algorithms implemented, interface design prototyped, etc. 
-
-You will be expected to turn in code, documentation, and data (as appropriate) at each of these stages.
-
-Write concrete steps for your schedule to move from concept to working system. 
+Sunday April 24: Finalize GUI
 
 ### First Milestone (Fri Apr 15)
 For the first milestone we should have pulled the data from the website and organize it into team data structures.
