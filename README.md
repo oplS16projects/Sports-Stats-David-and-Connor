@@ -33,13 +33,13 @@ First Connor will extract all of the information from the website containing the
 ## Schedule
 
 
-Sunday April 10: Establish most important statistics to pull from website, weight, etc. First draft of forumla.
+Sunday April 10: Establish most important statistics to pull from website, weight, etc. First draft of forumla. [DONE]
 
-Wednesday April 13: Have code to pull stats from website.
+Wednesday April 13: Have code to pull stats from website. [DONE]
 
-Friday April 15: Have those stats organized into a data structure
+Friday April 15: Have those stats organized into a data structure [DONE]
 
-Monday April 18: Apply those stats to the forumla. The formula may need revising at this point
+Monday April 18: Apply those stats to the forumla. The formula may need revising at this point [DONE]
 
 Wednesday April 20: Have all files need to pull from for GUI (team logos, etc.)
 
