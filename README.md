@@ -41,6 +41,8 @@ Friday April 15: Have those stats organized into a data structure [DONE]
 
 Monday April 18: Apply those stats to the forumla. The formula may need revising at this point [DONE]
 
+TEST
+
 Wednesday April 20: Have all files need to pull from for GUI (team logos, etc.)
 
 Friday April 22: Finalize Forumla, start to put GUI together.
