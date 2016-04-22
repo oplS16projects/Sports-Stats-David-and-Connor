@@ -6,30 +6,6 @@
 (define myport (get-pure-port myurl))
 (define site_source (port->string myport))
 
-<<<<<<< HEAD
-=======
-#| Points weighting for formulas |#
-
-(define goals_against 120)
-(define ga_offset (* .95 120))
-
-(define goals_for 120)
-(define gf_offset (* .95 108))
-
-(define goals_differential 0)
-
-(define shots_for 20)
-(define sf_offset (* .95 1508))
-
-(define save_percentage 30)
-(define s%_offset (* .95 91.8))
-
-(define corsi 50)
-(define c_offset (* .95 44.2))
-
-(define weightings '( goals_against goals_for goals_differential shots_for save_percentage corsi))
-
->>>>>>> master
 #| A list of possible cities for the use of searching tables for valid results     |#
 (define cities  '("Florida" "Washington"  "NY Rangers" "Pittsburgh" "Tampa Bay"
                   "Los Angeles"  "St. Louis" "San Jose"   "Minnesota"
@@ -45,7 +21,6 @@
 
 
 #| Generates a probability of victory based on two given teams |#
-<<<<<<< HEAD
 (define (pick_teams team1 team2)
   (generate_chances (search_team NHL team1) (search_team NHL team2)))
 
@@ -120,45 +95,6 @@
 #|                                                          |#
 #|            STATISTICAL GENERATION FUNCTIONS              |#
 #|                                                          |#
-=======
-
-
-
-(define (generate_chances team1 team2)
-  (/ (generate_probability team1 team2)
-     (total_possible_points weightings)))
-  
-(define (generate_probability team1 team2)
-  (+ (generate_goals_against team1 team2)
-     (generate_goals_for team1 team2)
-     
-     ))
-
-(define (total_possible_points weights)
- (+ goals_against
-    goals_for)
-  )
-
-;(define (search_stats stat team reference)
-
-#| Generates a number for team1 based on 1- (GA1/(GA1+GA2)) |#
-(define (generate_goals_against team1 team2)
-  (*  (- 1 (/ (- (search_stats "GA" team1 stat_reference) ga_offset)
-  (+ (- (search_stats "GA" team1 stat_reference) ga_offset)
-     (- (search_stats "GA" team2 stat_reference) ga_offset))))
-   goals_against))
-
-
-(define (generate_goals_for team1 team2)
-  (*  (/ (- (search_stats "GF" team1 stat_reference) gf_offset)
-  (+ (- (search_stats "GF" team1 stat_reference) gf_offset)
-     (- (search_stats "GF" team2 stat_reference) gf_offset)))
-   goals_for))
-
-;(define (generate_goals_differential team1 team2) )
-
-
->>>>>>> master
 
 
 
@@ -278,10 +214,8 @@
 Bruins
 (search_stats "GF%" Bruins stat_reference)
 |#
-(define Devils (search_team NHL "Edmonton"))
-(define Capitals (search_team NHL "Washington"))
+
 #| This should display the Bruins team then |#
-<<<<<<< HEAD
 
 
 
@@ -316,6 +250,3 @@ Bruins
 
 
 
-
-=======
->>>>>>> master
