@@ -6,6 +6,8 @@
 (define myport (get-pure-port myurl))
 (define site_source (port->string myport))
 
+<<<<<<< HEAD
+=======
 #| Points weighting for formulas |#
 
 (define goals_against 120)
@@ -27,6 +29,7 @@
 
 (define weightings '( goals_against goals_for goals_differential shots_for save_percentage corsi))
 
+>>>>>>> master
 #| A list of possible cities for the use of searching tables for valid results     |#
 (define cities  '("Florida" "Washington"  "NY Rangers" "Pittsburgh" "Tampa Bay"
                   "Los Angeles"  "St. Louis" "San Jose"   "Minnesota"
@@ -42,6 +45,82 @@
 
 
 #| Generates a probability of victory based on two given teams |#
+<<<<<<< HEAD
+(define (pick_teams team1 team2)
+  (generate_chances (search_team NHL team1) (search_team NHL team2)))
+
+#| Finds the ratio between points earned and possible points   |#
+(define (generate_chances team1 team2)
+  (/ (generate_probability team1 team2)
+     (total_possible_points)))
+
+#| Find sthe probability and assigns points earned for a team  |#
+(define (generate_probability team1 team2)
+  (+ (generate_goals_against team1 team2)
+     (generate_goals_for team1 team2)
+     (generate_shots_for team1 team2)
+     (generate_save_percentage team1 team2)
+     (generate_corsi team1 team2)
+     ))
+
+#| Finds the total number of points possible based on given stats |#
+(define (total_possible_points)
+ (+ goals_against
+    goals_for
+    shots_for
+    save_percentage
+    corsi)
+  )
+
+
+#|                                                          |#
+#|            STATISTICAL EVALUATION FUNCTIONS              |#
+#|      NOTE ABOUT THESE ON WEIGHTED FUNCTIONS SECTION      |#
+
+
+
+
+
+#| Generates a number for team1 based on 1- (GA1/(GA1+GA2)) |#
+
+(define (generate_goals_against team1 team2)
+  (*  (- 1 (/ (- (search_stats "GA" team1 stat_reference) ga_offset)
+  (+  (- (search_stats "GA" team1 stat_reference) ga_offset)
+      (- (search_stats "GA" team2 stat_reference) ga_offset))))
+   goals_against))
+
+#| Generates a number for team1 based on (GF1/(GF1+GF2)     |#
+(define (generate_goals_for team1 team2)
+  (*  (/ (- (search_stats "GF" team1 stat_reference) gf_offset)
+  (+  (- (search_stats "GF" team1 stat_reference) gf_offset)
+      (- (search_stats "GF" team2 stat_reference) gf_offset)))
+   goals_for))
+
+
+#| Generates a number for team1 based on (SF1/(SF2+SF1)     |#
+(define (generate_shots_for team1 team2)
+  (*  (/ (- (search_stats "SF" team1 stat_reference) sf_offset)
+  (+  (- (search_stats "SF" team1 stat_reference) sf_offset)
+      (- (search_stats "SF" team2 stat_reference) sf_offset)))
+   shots_for))
+#| Generates a number for team1 based on (Sv%1/(Sv%2+Sv%1)  |#
+(define (generate_save_percentage team1 team2)
+  (*  (/ (- (search_stats "Sv%" team1 stat_reference) s%_offset)
+  (+  (- (search_stats "Sv%" team1 stat_reference) s%_offset)
+      (- (search_stats "Sv%" team2 stat_reference) s%_offset)))
+   save_percentage))
+#| Generates a number for team1 based on (CF%1/(CF%2+CF%1)  |#
+(define (generate_corsi team1 team2)
+  (*  (/ (- (search_stats "CF%" team1 stat_reference) c_offset)
+  (+ (- (search_stats "CF%" team1 stat_reference) c_offset)
+     (- (search_stats "CF%" team2 stat_reference) c_offset)))
+   corsi))
+
+
+#|                                                          |#
+#|            STATISTICAL GENERATION FUNCTIONS              |#
+#|                                                          |#
+=======
 
 
 
@@ -79,6 +158,7 @@
 ;(define (generate_goals_differential team1 team2) )
 
 
+>>>>>>> master
 
 
 
@@ -119,7 +199,9 @@
 
 
 
-#| Table Accessors |#
+#|                                                          |#
+#|                  TABLE ACCESSORS                         |#
+#|                                                          |#
 
 #| Takes a league and the string of a city ex: "Boston" and returns the team objet |#
 (define (search_team league_table city_name)
@@ -137,7 +219,59 @@
   (cond [(null? team)(error "That is not a valid stat")]
         [(equal? stat (car reference))(car team)]
         [else (search_stats stat (cdr team) (cdr reference))]))
-#| In this product we use the stat_reference table at the top |#
+#| In this procdure we use the stat_reference table at the top |#
+
+#| Finds the lowest number of a stat i nthe league             |#
+(define (lowest_stat stat)
+  (lowest_element (create_stat_sheet stat NHL)))
+
+#| Creates a list on a single stat for the entire league       |#
+(define (create_stat_sheet stat league_table)
+  (cond [(null? league_table) '() ]
+        [else  (cons (search_stats stat (search_team NHL (caar league_table)) stat_reference)
+                    (create_stat_sheet stat (cdr league_table)))]))
+
+#| Finds the lowest element in a given list                    |#
+(define (lowest_element lst)
+  (lowest-help lst (car lst)))
+(define(lowest-help lst smallest)
+    (cond [(null? lst) smallest]
+          [(<= (car lst) smallest)(lowest-help (cdr lst) (car lst))]
+          [else (lowest-help (cdr lst) smallest)])
+    )
+
+(define (calculate_wins_table cities_table)
+  (define (calculate_wins city league)
+    (define (calculate_wins_help city league wins)
+      (cond [(null? league) wins]
+            [(equal? city (car league))(calculate_wins_help city (cdr league) wins)]
+            [(win? (pick_teams city (car league)))(calculate_wins_help city (cdr league) (+ 1 wins))]
+            [(loss?(pick_teams city (car league)))(calculate_wins_help city (cdr league) wins)]
+            ))
+    (calculate_wins_help city league 0))
+  (cond [(null? cities_table) '() ]
+        [else (cons (calculate_wins (car cities_table) cities) (calculate_wins_table (cdr cities_table)))]))
+
+#|
+(define (find_best_team wins_table cities_table)
+  (define (find_best_help wins_table cities_table current)
+    (cond [(null? wins_table) '()]
+          [(null? cities_table)(error "oop")]
+          [(= (car wins_table) current) (cons (car cities_table) (find_best_help (calculate_wins_table cities) cities (- current 1)))]
+          [else (find_best_help (cdr wins_table) (cdr cities_table) current)]
+          ))
+  (find_best_help wins_table cities_table 29))
+|#
+
+(define (win? prob)
+  (cond [(> prob .5) #t]
+        [else #f]))
+
+(define (loss? prob)
+  (cond [(< prob .5) #t]
+        [else #f]))
+
+
 
 #| Accessors Example: Remove comments to see results 
 (define Bruins (search_team NHL "Boston"))
@@ -147,3 +281,41 @@ Bruins
 (define Devils (search_team NHL "Edmonton"))
 (define Capitals (search_team NHL "Washington"))
 #| This should display the Bruins team then |#
+<<<<<<< HEAD
+
+
+
+#|                                                          |#
+#|                  WEIGHTED FUNCTIONS                      |#
+#|                                                          |#
+
+
+
+#| NOTE ON STATISTICAL FUNCTIONS                            |#
+#| All of the statistics used in this program have been altered
+   to subtract 95% of the lowest stat from each catagory. This
+   increases the difference between the best and worst teams and
+   provides more meaningful results                         |#
+(define goals_against 115)
+(define ga_offset (* .99 (lowest_stat "GA")))
+
+(define goals_for 120)
+(define gf_offset (* .99 (lowest_stat "GF")))
+
+(define goals_differential 0)
+
+(define shots_for 50)
+(define sf_offset (* .99 (lowest_stat "SF")))
+
+(define save_percentage 30)
+(define s%_offset (* .99(lowest_stat "Sv%")))
+
+(define corsi 100)
+(define c_offset (* .99 (lowest_stat "CF%")))
+
+
+
+
+
+=======
+>>>>>>> master
