@@ -1,177 +1,189 @@
 #lang racket
+
 (require racket/gui/base)
+(require "hockey_stats.rkt")
 
 (define frame (new frame%
                    [label "Hockey Stats"]
-                   [width 600]
+                   [width 1000]
                    [height 720]))
 
-(define atlantic (new vertical-panel% [parent frame]
+
+(define atlantic/central (new horizontal-panel% [parent frame]
                                      [alignment '(left top)]
-                                     [min-width 200]
+                                     [style '(border)]
+                                     [stretchable-width #t]
+                                     ))
+(define atlantic (new vertical-pane% [parent atlantic/central]
+                                     [alignment '(left top)]
+                                     
                                      [stretchable-width #t]
                                      ))
 (new button% [parent atlantic]
              
              [label "Florida Panthers"]
              [callback (lambda (button event)
-                         (send msg set-label "Florida"))]
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Florida")]
+                       [else  (send team2msg set-label "Florida")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Florida"))) ]) )]
              [min-width 150]
              )
 
 (new button% [parent atlantic]
              [label "Tampa Bay Lightning"]
              [callback (lambda (button event)
-                         (send msg set-label "Tampa Bay"))]
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Tampa Bay")]
+                       [else  (send team2msg set-label "Tampa Bay")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Tampa Bay"))) ]) )]
              [min-width 150])
 
 (new button% [parent atlantic]
              [label "Detroit Red Wings"]
              [callback (lambda (button event)
-                         (send msg set-label "Detroit"))]
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Detroit")]
+                       [else  (send team2msg set-label "Detroit")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Detroit"))) ]) )]
              [min-width 150])
 
 (new button% [parent atlantic]
              [label "Boston Bruins"]
              [callback (lambda (button event)
-                         (send msg set-label "Boston"))]
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Boston")]
+                       [else  (send team2msg set-label "Boston")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Boston"))) ]) )]
              [min-width 150])
 
 (new button% [parent atlantic]
              [label "Ottawa Senetors"]
              [callback (lambda (button event)
-                         (send msg set-label "Ottawa"))]
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Ottawa")]
+                       [else  (send team2msg set-label "Ottawa")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Ottawa"))) ]) )]
              [min-width 150])
 
 (new button% [parent atlantic]
              [label "Montreal Canadiens"]
              [callback (lambda (button event)
-                         (send msg set-label "Montreal"))]
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Montreal")]
+                       [else  (send team2msg set-label "Montreal")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Montreal"))) ]) )]
              [min-width 150])
 
 (new button% [parent atlantic]
              [label "Buffalo Sabres"]
              [callback (lambda (button event)
-                         (send msg set-label "Buffalo"))]
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Buffalo")]
+                       [else  (send team2msg set-label "Buffalo")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Buffalo"))) ]) )]
              [min-width 150])
 
 (new button% [parent atlantic]
              [label "Toronto Maple Leafs"]
              [callback (lambda (button event)
-                         (send msg set-label "Toronto"))]
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Toronto")]
+                       [else  (send team2msg set-label "Toronto")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Toronto"))) ]) )]
              [min-width 150])
 
-(define central (new vertical-panel% [parent frame]
+(define central (new vertical-pane% [parent atlantic/central]
                                      [alignment '(right top)]
-                                     [min-width 200]
+                                     
                                      [stretchable-width #t]))
 
 (new button% [parent central]
              
              [label "Dallas Stars"]
              [callback (lambda (button event)
-                         (send msg set-label "Dallas"))]
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Dallas")]
+                       [else  (send team2msg set-label "Dallas")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Dallas"))) ]) )]
              [min-width 150])
 
 (new button% [parent central]
              
              [label "St. Louis Blues"]
              [callback (lambda (button event)
-                         (send msg set-label "St. Louis"))]
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "St. Louis")]
+                       [else  (send team2msg set-label "St. Louis")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "St. Louis"))) ]) )]
              [min-width 150])
 
 (new button% [parent central]
              
              [label "Chicago Blackhawks"]
              [callback (lambda (button event)
-                         (send msg set-label "Chicago"))]
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Chicago")]
+                       [else  (send team2msg set-label "Chicago")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Chicago"))) ]) )]
              [min-width 150])
 
 (new button% [parent central]
              
              [label "Nashville Predators"]
              [callback (lambda (button event)
-                         (send msg set-label "Nashville"))]
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Nashville")]
+                       [else  (send team2msg set-label "Nashville")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Nashville"))) ]) )]
              [min-width 150])
 
 (new button% [parent central]
              
              [label "Minnesota Wild"]
              [callback (lambda (button event)
-                         (send msg set-label "Minnesota"))]
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Minnesota")]
+                       [else  (send team2msg set-label "Minnesota")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Minnesota"))) ]) )]
              [min-width 150])
 
 (new button% [parent central]
              
              [label "Colorado Avalanch"]
              [callback (lambda (button event)
-                         (send msg set-label "Colorado"))]
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Colorado")]
+                       [else  (send team2msg set-label "Colorado")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Colorado"))) ]) )]
              [min-width 150])
 
 (new button% [parent central]
              
              [label "Winnipeg Jets"]
              [callback (lambda (button event)
-                         (send msg set-label "Winnipeg"))]
-             [min-width 150])
-
-(define pacific (new vertical-panel% [parent frame]
-                                     [alignment '(right bottom)]
-                                     [stretchable-width #t]))
-
-(new button% [parent pacific]
-             
-             [label "Anaheim Ducks"]
-             [callback (lambda (button event)
-                         (send msg set-label "Anaheim"))]
-             [min-width 150])
-
-(new button% [parent pacific]
-             
-             [label "Los Angeles Kings"]
-             [callback (lambda (button event)
-                         (send msg set-label "Los Angeles"))]
-             [min-width 150])
-
-(new button% [parent pacific]
-             
-             [label "San Jose Sharks"]
-             [callback (lambda (button event)
-                         (send msg set-label "San Jose"))]
-             [min-width 150])
-
-(new button% [parent pacific]
-             
-             [label "Arizona Coyotes"]
-             [callback (lambda (button event)
-                         (send msg set-label "Arizona"))]
-             [min-width 150])
-
-(new button% [parent pacific]
-             
-             [label "Calgary Flames"]
-             [callback (lambda (button event)
-                         (send msg set-label "Calgary"))]
-             [min-width 150])
-
-(new button% [parent pacific]
-             
-             [label "Vancouver Cannucks"]
-             [callback (lambda (button event)
-                         (send msg set-label "Vancouver"))]
-             [min-width 150])
-
-(new button% [parent pacific]
-             
-             [label "Edmonton Oilers"]
-             [callback (lambda (button event)
-                         (send msg set-label "Edmonton"))]
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Winnipeg")]
+                       [else  (send team2msg set-label "Winnipeg")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Winnipeg"))) ]) )]
              [min-width 150])
 
 
 
+(define output_panel (new horizontal-panel% [parent frame]
+                                     [alignment '(center center)]
+                                     [style '(border)]
+                                     [stretchable-width #t]
+                                     ))
 
-(define metro (new vertical-panel% [parent frame]
+(new button% [parent output_panel]
+     [label "Reset"]
+     ; Callback procedure for a button click:
+     [callback (lambda (button event)
+                 (send team1msg set-label "NULL")
+                 (send team2msg set-label "NULL")
+                 (send output   set-label "NAN"))])
+
+(define msg (new message% [parent frame]
+                          [label "Pick Teams"]))
+
+
+
+(define pacific/metro (new horizontal-panel% [parent frame]
+                                     [alignment '(center bottom)]
+                                     [style '(border)]
+                                     [stretchable-width #t]
+                                     ))
+
+
+
+
+(define metro (new vertical-pane% [parent pacific/metro]
                                      [alignment '(left bottom)]
                                      [stretchable-width #t]))
 
@@ -179,60 +191,151 @@
              
              [label "Washington Capitals"]
              [callback (lambda (button event)
-                         (send msg set-label "Washington"))]
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Washington")]
+                       [else  (send team2msg set-label "Washington")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Washington"))) ]) )]
              [min-width 150])
 
 (new button% [parent metro]
              
              [label "Pittsburgh Penguins"]
              [callback (lambda (button event)
-                         (send msg set-label "Pittsburgh"))]
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Pittsburgh")]
+                       [else  (send team2msg set-label "Pittsburgh")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Pittsburgh"))) ]) )]
              [min-width 150])
 
 (new button% [parent metro]
              
              [label "New York Rangers"]
              [callback (lambda (button event)
-                         (send msg set-label "NY Rangers"))]
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "NY Rangers")]
+                       [else  (send team2msg set-label "NY Rangers")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "NY Rangers"))) ]) )]
              [min-width 150])
 
 (new button% [parent metro]
              
              [label "New York Islanders"]
              [callback (lambda (button event)
-                         (send msg set-label "NY Islanders"))]
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "NY Islanders")]
+                       [else  (send team2msg set-label "NY Islanders")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "NY Islanders"))) ]) )]
              [min-width 150])
 
 (new button% [parent metro]
              
              [label "Philadelphia Flyers"]
              [callback (lambda (button event)
-                         (send msg set-label "Philadelphia"))]
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Philadelphia")]
+                       [else  (send team2msg set-label "Philadelphia")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Philadelphia"))) ]) )]
              [min-width 150])
 
 (new button% [parent metro]
              
              [label "Carolina Huricanes"]
              [callback (lambda (button event)
-                         (send msg set-label "Carolina"))]
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Carolina")]
+                       [else  (send team2msg set-label "Carolina")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Carolina"))) ]) )]
              [min-width 150])
 
 (new button% [parent metro]
              
              [label "New Jersey Devils"]
              [callback (lambda (button event)
-                         (send msg set-label "New Jersey"))]
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "New Jersey")]
+                       [else  (send team2msg set-label "New Jersey")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "New Jersey"))) ]) )]
              [min-width 150])
 
 (new button% [parent metro]
              
              [label "Columbus Blue Jackets"]
              [callback (lambda (button event)
-                         (send msg set-label "Columbus"))]
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Columbus")]
+                       [else  (send team2msg set-label "Columbus")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Columbus"))) ]) )]
+             [min-width 150])
+
+(define pacific (new vertical-pane% [parent pacific/metro]
+                                     [alignment '(right bottom)]
+                                     [stretchable-width #t]))
+
+(new button% [parent pacific]
+             
+             [label "Anaheim Ducks"]
+             [callback (lambda (button event)
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Anaheim")]
+                       [else  (send team2msg set-label "Anaheim")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Anaheim"))) ]) )]
+             [min-width 150])
+
+(new button% [parent pacific]
+             
+             [label "Los Angeles Kings"]
+             [callback (lambda (button event)
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Los Angeles")]
+                       [else  (send team2msg set-label "Los Angeles")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Los Angeles"))) ]) )]
+             [min-width 150])
+
+(new button% [parent pacific]
+             
+             [label "San Jose Sharks"]
+             [callback (lambda (button event)
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "San Jose")]
+                       [else  (send team2msg set-label "San Jose")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "San Jose"))) ]) )]
+             [min-width 150])
+
+(new button% [parent pacific]
+             
+             [label "Arizona Coyotes"]
+             [callback (lambda (button event)
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Arizona")]
+                       [else  (send team2msg set-label "Arizona")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Arizona"))) ]) )]
+             [min-width 150])
+
+(new button% [parent pacific]
+             
+             [label "Calgary Flames"]
+             [callback (lambda (button event)
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Calgary")]
+                       [else  (send team2msg set-label "Calgary")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Calgary"))) ]) )]
+             [min-width 150])
+
+(new button% [parent pacific]
+             
+             [label "Vancouver Cannucks"]
+             [callback (lambda (button event)
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Vancouver")]
+                       [else  (send team2msg set-label "Vancouver")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Vancouver"))) ]) )]
+             [min-width 150])
+
+(new button% [parent pacific]
+             
+             [label "Edmonton Oilers"]
+             [callback (lambda (button event)
+                 (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Edmonton")]
+                       [else  (send team2msg set-label "Edmonton")
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Edmonton"))) ]) )]
              [min-width 150])
 
 
-(define msg (new message% [parent frame]
+
+
+(define team1msg (new message% [parent frame]
+                          [label "NULL"]))
+
+(define team2msg (new message% [parent frame]
+                          [label "NULL"]))
+
+(define output (new message% [parent output_panel]
                           [label "Pick Teams"]))
 
 
