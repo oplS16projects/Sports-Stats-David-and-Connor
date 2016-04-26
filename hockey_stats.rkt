@@ -141,7 +141,7 @@
 
 #| Takes a league and the string of a city ex: "Boston" and returns the team objet |#
 (define (search_team league_table city_name)
-  (cond [(null? league_table)(error "Error in search_table that city could not be found, please consult the cites list")]
+  (cond [(null? league_table)(error city_name)]
         [(equal? city_name (caar league_table)) (car league_table)]
         [else (search_team (cdr league_table) city_name)]))
 
@@ -246,6 +246,8 @@ Bruins
 
 (define corsi 100)
 (define c_offset (* .99 (lowest_stat "CF%")))
+
+(provide (all-defined-out))
 
 
 
