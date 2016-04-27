@@ -33,7 +33,7 @@ https://docs.racket-lang.org/gui/
 
 ## Favorite Scheme Expressions
 
-Connor:
+### Connor McLaughlin
 ```racket
 #| Takes a stastic, a team object (LIST OF STATS) and the reference table and returns the number for that stat|#
 (define (search_stats stat team reference)
@@ -42,25 +42,42 @@ Connor:
         [else (search_stats stat (cdr team) (cdr reference))]))
 ```
 This is my favorite function that I wrote because it fixes the problem we had with large tables elegantly. We 
-coundn't just make objects representing each stat feild because we had about thirty. So instead I created a 
+couldn't just make objects representing each stat field because we had about thirty. So instead, I created a 
 function that passes in a string argument that is the desired stat. It then looks down two lists at the same
 time for the stat and returns it from the team list.
 
 ### David Bui
+```racket
+(define (calculate_wins_table cities_table)
+  (define (calculate_wins city league)
+    (define (calculate_wins_help city league wins)
+      (cond [(null? league) wins]
+            [(equal? city (car league))(calculate_wins_help city (cdr league) wins)]
+            [(win? (pick_teams city (car league)))(calculate_wins_help city (cdr league) (+ 1 wins))]
+            [(loss?(pick_teams city (car league)))(calculate_wins_help city (cdr league) wins)]
+            ))
+    (calculate_wins_help city league 0))
+  (cond [(null? cities_table) '() ]
+        [else (cons (calculate_wins (car cities_table) cities) (calculate_wins_table (cdr cities_table)))]))
+```
 
-### Connor McLaughlin
+The above code is my favorite for two reasons. For one, I made the equation for this code and spent a relatively decent amount of time for it. What this code does is that it calculates the winnings of each of the teams in a provided table and puts them back into another table. The second reason is because it embodies the OPL concept of being able to use recursion very elegantly to solve a very crucial function of the project.
 
 ## How to Download and Run
+
+You would run this project from the prob_gui_test racket file. Once running, you would just select the teams you want to compare or predict and then see what results they produce. If you would like to compare them again then just reset your teams and repeat the process.
 
 ### Statement 
 Our project will take any two teams in the NHL and try to predict who will win when they play together. The project will pull stats from website www.hockeyanalysis.com and organize them into objects for each of the 30 teams in the league. We will then compare these stats to generate a number representing the probability of victory for each team. It will also give a breakdown about how we arrived at these numbers.
 
 ### Analysis
-Some of the ideas from class that we plan on implementing into our project include recursion and Higher Order procedures such as map/filter/reduce.
+Some of the ideas from class that we plan on implementing into our project include recursion, messsage passing, and data abstraction.
 
 We plan on using recursion by recovering the information from a gigantic statistics table and reorganizing them. There is a website with data on certain sports team that we plan on using for the data analysis. Since extracting all of the information at once is somewhat complex, we plan on using recursion to extract small bits at a time until the whole table has been obtained. Later on, we will also be using recursion with implementing the predictions part since those require some sort of statistical analysis.
 
-Higher Order procedures will be used in our project in only the predictions and analysis part. Certain pieces of information such as outlier data can be removed from the list by using filter. As another example, the map function can be used to perform a certain statistical equation on certain categories of information such as winning and losing streaks.
+Message passing will be used to implement the GUI at run time. This is meant to help give the user feedback on the results of the comparisons they are making or for certain predictions as well.
+
+Data abstraction is going to be helpful in when we make the search functions and tables for various teams. This is important since various teams can affect the different stats in different ways.
 
 ### Data set or other source materials 
 The data will be pulled from http://stats.hockeyanalysis.com/teamstats.php?disp=1&db=201516&sit=5v5&sort=PDO&sortdir=DESC. It will be pulled using the net library.
@@ -93,11 +110,11 @@ Friday April 15: Have those stats organized into a data structure [DONE]
 
 Monday April 18: Apply those stats to the forumla. The formula may need revising at this point [DONE]
 
-Wednesday April 20: Have all files need to pull from for GUI (team logos, etc.)
+Wednesday April 20: Have all files need to pull from for GUI (team logos, etc.) [DONE]
 
-Friday April 22: Finalize Forumla, start to put GUI together.
+Friday April 22: Finalize Forumla, start to put GUI together. [DONE]
 
-Sunday April 24: Finalize GUI
+Sunday April 24: Finalize GUI [DONE]
 
 ### First Milestone (Fri Apr 15)
 For the first milestone we should have pulled the data from the website and organize it into team data structures.
