@@ -56,8 +56,11 @@ Milestone 1 Update: We have pulled data from the site and organized it according
 For the second milestone we should have pulled from the numbers from the objects and applied them to a formula. We start to create a GUI for the program. 
 
 Milestone 2 Update: We have used the data we pull from milestone 1 and applied it to the formula we devoloped. The we started work on the GUI as per schedule
+
 ### Final Presentation (last week of semester)
 During our last week in the semester, we will be going through and knocking out all of the smallest bugs within our code that may exist. By then, we should have already dealt with all of the really major defects within our code. All that should be left is to remove discrepancies with edge cases and outliers. Also, we will try to come up with final questions that should be responded to when doing our project presentations in the hallway.
+
+Final Project Update: Project done! The GUI has been finished and program works. Connor has made a bracket of picks that the bot has made for the playoffs and compared them to real peoples for the presentation.
 
 ## Group Responsibilities
 
