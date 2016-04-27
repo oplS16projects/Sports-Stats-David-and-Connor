@@ -10,6 +10,10 @@ Connor McLaughlin
 
 This project takes a bunch of information from various sports team and compares them to one another. You can use the GUI to compare teams and come up with probabilities on certain teams winning or losing.
 
+## Screenshot
+
+![alt tag](https://github.com/oplS16projects/Sports-Stats-David-and-Connor/blob/master/screenshot.png)
+
 ## Concepts Demonstrated
 
 * Tail recursion was used for transversing the lists
@@ -26,6 +30,14 @@ https://docs.racket-lang.org/net/index.html
 gui library: We used this to make the gui that the user could use to interact with the various teams and compare or look them up.
 
 https://docs.racket-lang.org/gui/
+
+## Favorite Scheme Expressions
+
+### David Bui
+
+### Connor McLaughlin
+
+## How to Download and Run
 
 ### Statement 
 Our project will take any two teams in the NHL and try to predict who will win when they play together. The project will pull stats from website www.hockeyanalysis.com and organize them into objects for each of the 30 teams in the league. We will then compare these stats to generate a number representing the probability of victory for each team. It will also give a breakdown about how we arrived at these numbers.
