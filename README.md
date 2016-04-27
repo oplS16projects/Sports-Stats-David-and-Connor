@@ -33,6 +33,19 @@ https://docs.racket-lang.org/gui/
 
 ## Favorite Scheme Expressions
 
+Connor:
+```racket
+#| Takes a stastic, a team object (LIST OF STATS) and the reference table and returns the number for that stat|#
+(define (search_stats stat team reference)
+  (cond [(null? team)(error "That is not a valid stat")]
+        [(equal? stat (car reference))(car team)]
+        [else (search_stats stat (cdr team) (cdr reference))]))
+```
+This is my favorite function that I wrote because it fixes the problem we had with large tables elegantly. We 
+coundn't just make objects representing each stat feild because we had about thirty. So instead I created a 
+function that passes in a string argument that is the desired stat. It then looks down two lists at the same
+time for the stat and returns it from the team list.
+
 ### David Bui
 
 ### Connor McLaughlin
