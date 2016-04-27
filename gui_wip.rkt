@@ -8,12 +8,21 @@
                    [width 1000]
                    [height 720]))
 
+#|*********************************************************|#
+#|**************ATLANTIC/CENTRAL PANEL*********************|#
+#|*********************************************************|#
 
 (define atlantic/central (new horizontal-panel% [parent frame]
                                      [alignment '(left top)]
                                      [style '(border)]
                                      [stretchable-width #t]
                                      ))
+
+#|*********************************************************|#
+#|********************ATLANTIC PANE************************|#
+#|*********************************************************|#
+
+
 (define atlantic (new vertical-pane% [parent atlantic/central]
                                      [alignment '(left top)]
                                      
@@ -85,6 +94,13 @@
                               (send output set-label (number->string(pick_teams (send team1msg get-label) "Toronto"))) ]) )]
              [min-width 150])
 
+
+
+#|*********************************************************|#
+#|********************CENTRAL PANE*************************|#
+#|*********************************************************|#
+
+
 (define central (new vertical-pane% [parent atlantic/central]
                                      [alignment '(right top)]
                                      
@@ -96,8 +112,11 @@
              [callback (lambda (button event)
                  (cond [(equal? "NULL" (send team1msg get-label)) (send team1msg set-label "Dallas")]
                        [else  (send team2msg set-label "Dallas")
-                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Dallas"))) ]) )]
+                              (send output set-label (number->string(pick_teams (send team1msg get-label) "Dallas")))
+                              ]) )]
              [min-width 150])
+
+;(* 350 (string->number(send output get-label)))
 
 (new button% [parent central]
              
@@ -153,7 +172,13 @@
                               (send output set-label (number->string(pick_teams (send team1msg get-label) "Winnipeg"))) ]) )]
              [min-width 150])
 
+#|*********************************************************|#
+#|********************OUTPUT PANEL*************************|#
+#|*********************************************************|#
 
+
+(define blue-brush (new brush% [color "blue"]))
+(define yellow-brush (new brush% [color "yellow"]))
 
 (define output_panel (new horizontal-panel% [parent frame]
                                      [alignment '(center center)]
@@ -161,18 +186,76 @@
                                      [stretchable-width #t]
                                      ))
 
-(new button% [parent output_panel]
+
+
+(define output_left (new vertical-pane% [parent output_panel]
+                                     [alignment '(center center)]
+                                     
+                                     [stretchable-width #t]))
+
+(define output_center (new vertical-pane% [parent output_panel]
+                                     [alignment '(center center)]
+                                     
+                                     [stretchable-width #t]))
+
+(define output_right (new vertical-pane% [parent output_panel]
+                                     [alignment '(center center)]
+                                     
+                                     
+                                     [stretchable-width #t]))
+
+(define canvas (new canvas% 
+                    [parent output_center]
+                    
+                    [paint-callback 
+                     (λ(can dc) (send dc set-brush blue-brush)(send dc draw-rectangle 0 0 300 100))]))
+
+
+
+(new button% [parent output_center]
+     [label "Draw Graph"]
+     ; Callback procedure for a button click:
+     [callback (lambda (button event)
+                 (cond [(equal? "NAN" (send output get-label)) (send output set-label "Pick Two Teams")]
+                       [else (send (send canvas get-dc) set-brush yellow-brush)
+                              (send (send canvas get-dc) draw-rectangle 0 0 (* 300 (string->number(send output get-label)))  100)]))])
+                              
+
+(new button% [parent output_center]
      [label "Reset"]
      ; Callback procedure for a button click:
      [callback (lambda (button event)
+                 (send (send canvas get-dc) set-brush blue-brush)
+                 (send (send canvas get-dc) draw-rectangle 0 0 300  100)
                  (send team1msg set-label "NULL")
                  (send team2msg set-label "NULL")
                  (send output   set-label "NAN"))])
 
-(define msg (new message% [parent frame]
-                          [label "Pick Teams"]))
+(define output (new message% [parent output_center]
+                             [label "NAN"]
+                             [auto-resize #f]))
+
+(define team1msg (new message% [parent output_left]
+                               [label "NULL"]
+                               [min-width 150]
+                               [auto-resize #f]))
+
+(define team2msg (new message% [parent output_right]
+                               [label "NULL"]
+                               [min-width 150]
+                               [auto-resize #f]))
 
 
+                             
+                             
+
+
+;(define msg (new message% [parent frame]
+ ;                         [label "Pick Teams"]))
+
+#|*********************************************************|#
+#|****************PACIFIC/METRO PANEL**********************|#
+#|*********************************************************|#
 
 (define pacific/metro (new horizontal-panel% [parent frame]
                                      [alignment '(center bottom)]
@@ -181,7 +264,9 @@
                                      ))
 
 
-
+#|*********************************************************|#
+#|***********************METRO PANE************************|#
+#|*********************************************************|#
 
 (define metro (new vertical-pane% [parent pacific/metro]
                                      [alignment '(left bottom)]
@@ -259,6 +344,12 @@
                               (send output set-label (number->string(pick_teams (send team1msg get-label) "Columbus"))) ]) )]
              [min-width 150])
 
+
+#|*********************************************************|#
+#|***********************PACIFIC PANE**********************|#
+#|*********************************************************|#
+
+
 (define pacific (new vertical-pane% [parent pacific/metro]
                                      [alignment '(right bottom)]
                                      [stretchable-width #t]))
@@ -329,14 +420,7 @@
 
 
 
-(define team1msg (new message% [parent frame]
-                          [label "NULL"]))
 
-(define team2msg (new message% [parent frame]
-                          [label "NULL"]))
-
-(define output (new message% [parent output_panel]
-                          [label "Pick Teams"]))
 
 
  #|
