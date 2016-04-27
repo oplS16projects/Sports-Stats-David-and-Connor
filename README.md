@@ -1,4 +1,31 @@
-# Project Title: Sports stats
+# Project Title: Sports Stats
+
+## Authors
+
+David Bui
+
+Connor McLaughlin
+
+## Overview
+
+This project takes a bunch of information from various sports team and compares them to one another. You can use the GUI to compare teams and come up with probabilities on certain teams winning or losing.
+
+## Concepts Demonstrated
+
+* Tail recursion was used for transversing the lists
+* Message passing was implemented for the GUI
+* Regular recursion was used in making lists
+* Data abstraction was implemented in the search functions and tables
+
+## External Technology and Libraries
+
+net/url library: This library was used to extract the information from the various sports teams and reorganize them.
+
+https://docs.racket-lang.org/net/index.html
+
+gui library: We used this to make the gui that the user could use to interact with the various teams and compare or look them up.
+
+https://docs.racket-lang.org/gui/
 
 ### Statement 
 Our project will take any two teams in the NHL and try to predict who will win when they play together. The project will pull stats from website www.hockeyanalysis.com and organize them into objects for each of the 30 teams in the league. We will then compare these stats to generate a number representing the probability of victory for each team. It will also give a breakdown about how we arrived at these numbers.
