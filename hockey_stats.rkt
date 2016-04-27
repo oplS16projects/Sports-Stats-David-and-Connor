@@ -19,7 +19,6 @@
                                 "FF60" "FA60" "FF%" "CF"    "CA"    "CF60"  "CA60" "CF%"
                                 "Sh%"  "Sv%"  "PDO" "OZFO%" "DZFO%" "NZFO%" "DNU"))
 
-
 #| Generates a probability of victory based on two given teams |#
 (define (pick_teams team1 team2)
   (generate_chances (search_team NHL team1) (search_team NHL team2)))
@@ -47,14 +46,9 @@
     corsi)
   )
 
-
 #|                                                          |#
 #|            STATISTICAL EVALUATION FUNCTIONS              |#
 #|      NOTE ABOUT THESE ON WEIGHTED FUNCTIONS SECTION      |#
-
-
-
-
 
 #| Generates a number for team1 based on 1- (GA1/(GA1+GA2)) |#
 
@@ -71,19 +65,20 @@
       (- (search_stats "GF" team2 stat_reference) gf_offset)))
    goals_for))
 
-
 #| Generates a number for team1 based on (SF1/(SF2+SF1)     |#
 (define (generate_shots_for team1 team2)
   (*  (/ (- (search_stats "SF" team1 stat_reference) sf_offset)
   (+  (- (search_stats "SF" team1 stat_reference) sf_offset)
       (- (search_stats "SF" team2 stat_reference) sf_offset)))
    shots_for))
+   
 #| Generates a number for team1 based on (Sv%1/(Sv%2+Sv%1)  |#
 (define (generate_save_percentage team1 team2)
   (*  (/ (- (search_stats "Sv%" team1 stat_reference) s%_offset)
   (+  (- (search_stats "Sv%" team1 stat_reference) s%_offset)
       (- (search_stats "Sv%" team2 stat_reference) s%_offset)))
    save_percentage))
+   
 #| Generates a number for team1 based on (CF%1/(CF%2+CF%1)  |#
 (define (generate_corsi team1 team2)
   (*  (/ (- (search_stats "CF%" team1 stat_reference) c_offset)
@@ -91,12 +86,9 @@
      (- (search_stats "CF%" team2 stat_reference) c_offset)))
    corsi))
 
-
 #|                                                          |#
 #|            STATISTICAL GENERATION FUNCTIONS              |#
 #|                                                          |#
-
-
 
 #| Generates a league based on a list of cities given |#
 (define (generate_league_table city_list)
@@ -108,11 +100,13 @@
   (cond [(not(inList? city_name cities))(error "Given city does not have a team, please consult the list")])
   (build_stats_list (car (regexp-match* (build_regex city_name cities) site_source)) city_name)
   )
+  
 #| A Boolean procedure that returns true if the city is valid |#
 (define (inList? city_name city_list)
   (cond [(null? city_list) #f]
         [(eqv? city_name (car city_list)) #t]
         [else (inList? city_name (cdr city_list))]))
+        
 #| Builds a regular expression string based on the city given |#
 (define (build_regex city_name city_list)
   (cond [(null? (cdr city_list)) (string-append city_name ".*" "Legend")]
@@ -129,11 +123,8 @@
         [else (cons (string->number (car string_list)) (string_list->number_list (cdr string_list)))]))
 #| NOTE: THIS FUNCTION BREAKS THE TOI STAT IF YOU WANT TO USE IT AVOID THIS FUNCTION |#
 
-
 #| An object representing the NHL's 30 teams |#
 (define NHL (generate_league_table cities))
-
-
 
 #|                                                          |#
 #|                  TABLE ACCESSORS                         |#
@@ -145,10 +136,8 @@
         [(equal? city_name (caar league_table)) (car league_table)]
         [else (search_team (cdr league_table) city_name)]))
 
-
 #| NOTE: Time on Ice (TOI) is going to be set to #f by string->number because it is a time. We don't really need it for this poject
    but if you really want it you'd have to work around the build_stats_list procedure |#
-
 
 #| Takes a stastic , a team object (LIST OF STATS) and the reference table and returns the number for that stat |#
 (define (search_stats stat team reference)
@@ -207,8 +196,6 @@
   (cond [(< prob .5) #t]
         [else #f]))
 
-
-
 #| Accessors Example: Remove comments to see results 
 (define Bruins (search_team NHL "Boston"))
 Bruins
@@ -217,13 +204,9 @@ Bruins
 
 #| This should display the Bruins team then |#
 
-
-
 #|                                                          |#
 #|                  WEIGHTED FUNCTIONS                      |#
 #|                                                          |#
-
-
 
 #| NOTE ON STATISTICAL FUNCTIONS                            |#
 #| All of the statistics used in this program have been altered
@@ -248,7 +231,3 @@ Bruins
 (define c_offset (* .99 (lowest_stat "CF%")))
 
 (provide (all-defined-out))
-
-
-
-
